@@ -1,5 +1,5 @@
-# Learning Algorithms and Data Structures
+# Learning Data Structures and Algorithms
 
 ### Data Structures
 
-- Linked List
+- Basic Linked List
