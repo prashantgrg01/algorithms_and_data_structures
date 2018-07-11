@@ -24,6 +24,9 @@ class Node(object):
         # pointer to the next node
         self.next = None
 
+    def __str__(self):
+        return "< " + str(self.data) + " >" 
+
 # Class definition for Linked List
 class LinkedList(object):
     def __init__(self):
@@ -108,12 +111,11 @@ class LinkedList(object):
             # loop until we reach the end of our linked list
             while current is not None:
                 # add each node's data to our result
-                res += " { " + str(current.data) + " } => "
+                res += "{ " + str(current.data) + " } => "
                 # move on to the next node
                 current = current.next
-            # append '!' to our result to denote the end of our result
-            res += "!"
-            return res
+            # return the result by removing the last 4 characters i.e. " => "
+            return res[:-4]
 
 # testing our basic linked list
 def test_bll():
