@@ -205,7 +205,7 @@ class DoublyLinkedList(object):
                 current.prev.next = current.next
                 # check if the current node is the tail node
                 if current != self.tail:
-                    # if so make the previous pointer of current's next node point to current previous node
+                    # if so make the previous pointer of current's next node point to current's previous node
                     current.next.prev = current.prev
                 else:
                     # make the current's previous node our new tail node
