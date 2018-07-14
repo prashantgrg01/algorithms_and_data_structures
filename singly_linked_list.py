@@ -9,10 +9,10 @@ Singly Linked List Implementation using Head and Tail pointers
 
 Methods:
 is_empty() => O(1) => checks whether the list is empty or not
-push_front() => O(1) => inserts a new item at the beginning of the list
+push_front(item) => O(1) => inserts a new item at the beginning of the list
 pop_front() => O(1) => removes the first item from the list
 peek_front() => O(1) => returns the first item of the list without removing it
-push_back() => O(1) => inserts a new item at the end of the list
+push_back(item) => O(1) => inserts a new item at the end of the list
 pop_back() => O(n) => removes the last item from the list
 peek_back() => O(1) => returns the last item of the list without removing it
 insert_before(target, item) => O(n) => inserts a new item before the target item in the list
