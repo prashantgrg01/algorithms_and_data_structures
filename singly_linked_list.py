@@ -274,6 +274,7 @@ class SinglyLinkedList(object):
             # return the result by removing the last 4 characters i.e. " => "
             return res[:-4]
 
+# testing our singly linked list
 def test_ssl():
     fruits = SinglyLinkedList()
     
