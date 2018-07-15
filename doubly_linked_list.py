@@ -292,7 +292,82 @@ class DoublyLinkedList(object):
 
 # testing our doubly linked list
 def test_dll():
-    pass
+    # create our doubly linked list
+    fruits = DoublyLinkedList()
+
+    # create test nodes
+    apple = Node("apple")
+    orange = Node("orange")
+    mango = Node("mango")
+    banana = Node("banana")
+    strawberry = Node("strawberry")
+    guava = Node("guava")
+    litchi = Node("litchi")
+    papaya = Node("papaya")
+
+    # testing empty list
+    print("List empty?", fruits.is_empty())
+    fruits.pop_front()
+    fruits.pop_back()
+    fruits.peek_front()
+    fruits.peek_back()
+    fruits.remove(apple)
+    fruits.search(orange)
+    print(fruits)
+    print("Number of items:", len(fruits))
+
+    # pushing a node in an empty list and popping a node from the list making it empty
+    fruits.push_front(apple)
+    print(fruits)
+    fruits.pop_front()
+    print(fruits)
+    fruits.push_back(orange)
+    print(fruits)
+    fruits.pop_back()
+    print(fruits)
+
+    # peeking the first and last node
+    fruits.push_front(apple)
+    fruits.push_back(orange)
+    fruits.push_front(guava)
+    fruits.push_back(mango)
+    print(fruits)
+    print("Number of items:", len(fruits))
+    print("First item:", fruits.peek_front())
+    print("Last item:", fruits.peek_back())
+
+    # testing the insert_before() and insert_after() functions
+    fruits.insert_before(guava, banana)
+    fruits.insert_before(orange, litchi)
+    print(fruits)
+    print("Number of items:", len(fruits))
+    fruits.insert_after(mango, strawberry)
+    fruits.insert_after(orange, papaya)
+    print(fruits)
+    print("Number of items:", len(fruits))
+
+    # removing from from the list
+    fruits.remove(banana)
+    fruits.remove(litchi)
+    fruits.remove(strawberry)
+    print(fruits)
+    print("Number of items:", len(fruits))
+
+    # searching a particular node
+    print("Is orange in the list?", fruits.search(orange))
+    print("Is litchi in the list?", fruits.search(litchi))
+
+    # getting a reference to a particular node
+    orange_node = fruits.get_node("orange")
+    litchi_node = fruits.get_node("litchi")
+    print("Orange node:", orange_node)
+    print("Is orange == orange_node?", orange == orange_node)
+    print("Litchi node:", litchi_node)
+    print("Is litchi == litchi_node:", litchi == litchi_node)
+
+    # printing the list in reverse order
+    print(fruits)
+    print(fruits.reverse())
 
 if __name__ == "__main__":
     test_dll()
