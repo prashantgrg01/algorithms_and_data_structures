@@ -73,8 +73,11 @@ class HashTable(object):
                 if self.table[index][i][0] == key:
                     # delete the (key, value) pair from the list of entries
                     del self.table[index][i]
-                    # decrease the number of entries in our hash table and return
+                    # decrease the number of entries in our hash table
                     self.entries -= 1
+                    # if the current index happens to be empty then make it None and return
+                    if self.table[index] == []:
+                        self.table[index] = None
                     return True
         # else return error and return
         print("Error! Key not found.")
@@ -99,18 +102,65 @@ class HashTable(object):
         return self.entries
 
     def __str__(self):
-        # initialize res to empty string
-        res = ""
-        # for each entry in hash table that is not None, append it to the result as string
-        for entry in self.table:
-            if entry is not None:
-                res += str(entry) + "\n"
-        # return the result removing the last new line
-        return res[:-1]
+        if self.is_empty():
+            return "Hash table empty!"
+        else:
+            # initialize res to empty string
+            res = ""
+            # for each entry in hash table that is not None, append it to the result as string
+            for entry in self.table:
+                if entry is not None:
+                    res += str(entry) + "\n"
+            # return the result removing the last new line
+            return res[:-1]
 
 # testing our hash table
 def test_hash_table():
-    pass
+    # create new hash table for names
+    names = HashTable(10)
+    
+    # testing empty hash table
+    print(names)
+    print("Is hash table empty?", names.is_empty())
+    print("No. of entries:", len(names))   
+
+    # adding entries to our hash table
+    names.add("waapeni", "albina")
+    print(names)
+    print("Is hash table empty?", names.is_empty())
+    print("No. of entries:", len(names))   
+    names.add("swoppe", "swapnil")
+    names.add("dade", "sosal")
+    names.add("dari", "ashesh")
+    names.add("penge", "asmita")
+    print(names)
+    print("No. of entries:", len(names))
+
+    # getting entries from our hash table
+    print("Value for key 'dari':", names.get("dari")) 
+    print("Value for key 'chauhan':", names.get("chauhan")) 
+    print("Value for key 'waapeni':", names.get("waapeni"))
+
+    # removing entries from our hash table
+    names.remove("dari")
+    names.remove("chauhan")
+    print(names)
+    print("No. of entries:", len(names))
+    names.remove("swoppe")
+    print(names)
+    print("No. of entries:", len(names))   
+
+    # overriding value for keys
+    names.add("waapeni", "albu")
+    print(names)
+    print("No. of entries:", len(names))
+
+    # making the hash table empty
+    names.remove("waapeni")
+    names.remove("dade")
+    names.remove("penge")
+    print(names)
+    print("No. of entries:", len(names))
 
 if __name__ == "__main__":
     test_hash_table()
