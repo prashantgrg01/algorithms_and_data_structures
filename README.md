@@ -8,3 +8,4 @@
 - Stack
 - Queue
 - Hash Table
+- Binary Tree
