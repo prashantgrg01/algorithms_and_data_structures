@@ -125,6 +125,8 @@ class BinaryTree(object):
                     min_parent.left = min_node.right
                 # delete the minimum node
                 del min_node
+            # decrease the size of our binary tree
+            self.__size -= 1
         else:
             # start from the root
             current = self.root
@@ -185,6 +187,8 @@ class BinaryTree(object):
                     del min_node
                 # delete the current node
                 del current
+                # decrease the size of our binary tree
+                self.__size -= 1
     
     def __len__(self):
         return self.__size
