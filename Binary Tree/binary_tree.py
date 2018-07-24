@@ -29,7 +29,6 @@ class Node(object):
 class BinaryTree(object):
     def __init__(self):
         self.root = None
-        self.__size = 0
 
     def is_empty(self):
         return self.root == None
@@ -58,8 +57,6 @@ class BinaryTree(object):
             else:
                 # make new node the right child of the parent node
                 parent.right = node
-        # increase the size of our binary tree
-        self.__size += 1
 
     def search(self, item):
         # check if the binary tree is empty
@@ -125,8 +122,6 @@ class BinaryTree(object):
                     min_parent.left = min_node.right
                 # delete the minimum node
                 del min_node
-            # decrease the size of our binary tree
-            self.__size -= 1
         else:
             # start from the root
             current = self.root
@@ -187,24 +182,69 @@ class BinaryTree(object):
                     del min_node
                 # delete the current node
                 del current
-                # decrease the size of our binary tree
-                self.__size -= 1
     
-    def __len__(self):
-        return self.__size
+    def get_size(self, node):
+        if node is None:
+            return 0
+        else:
+            return 1 + self.get_size(node.left) + self.get_size(node.right)
 
-    def print_in_order(self):
-        pass
+    def get_height(self, node):
+        if node is None:
+            return 0
+        else:
+            return 1 + max(self.get_height(node.left), self.get_height(node.right))
 
-    def print_pre_order(self):
-        pass
+    def print_in_order(self, node):
+        if node.left: 
+            self.print_in_order(node.left)
+        print(node.data)
+        if node.right:
+            self.print_in_order(node.right)
+
+    def print_pre_order(self, node):
+        print(node.data)
+        if node.left:
+            self.print_pre_order(node.left)
+        if node.right:
+            self.print_pre_order(node.right)
     
-    def print_post_order(self):
+    def print_post_order(self, node):
+        if node.left:
+            self.print_post_order(node.left)
+        if node.right:
+            self.print_post_order(node.right)
+        print(node.data)
+
+    def print_breadth_first(self, node):
         pass
 
 # testing our binary tree
 def test_binary_tree():
-    pass
+    # create binary tree for fruits
+    tree = BinaryTree()
+
+    # insert fruits
+    tree.insert("mango")
+    tree.insert("banana")
+    tree.insert("strawberry")
+    tree.insert("guava")
+    tree.insert("lime")
+    tree.insert("orange")
+    tree.insert("pine")
+    tree.insert("apple")
+
+    print("Tree height:", tree.get_height(tree.root))
+    print("Tree size:", tree.get_size(tree.root))
+    print("In-order traversal:")
+    tree.print_in_order(tree.root)
+    print()
+    print("Pre-order traversal:")
+    tree.print_pre_order(tree.root)
+    print()
+    print("Post-order traversal:")
+    tree.print_post_order(tree.root)
+    print()
 
 if __name__ == "__main__":
     test_binary_tree()
