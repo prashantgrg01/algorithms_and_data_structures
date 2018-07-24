@@ -193,7 +193,13 @@ class BinaryTree(object):
     def __len__(self):
         return self.__size
 
-    def __str__(self):
+    def print_in_order(self):
+        pass
+
+    def print_pre_order(self):
+        pass
+    
+    def print_post_order(self):
         pass
 
 # testing our binary tree
