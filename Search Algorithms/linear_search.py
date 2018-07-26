@@ -5,12 +5,13 @@ Created on Jul 26, 2018
 @author: Prashant Gurung
 -------------------------
 
-Linear Search
+Linear Search Implementation
 
 """
 
-# function to search whether an item exists in a list of items or not
+# function to sequentially search for an item in a list of items
 def linear_search(search_item, items):
+    assert type(items) == list, "Second argument items must be a list!"
     # for each item in list of items
     for item in items:
         # check if current item is the search item
