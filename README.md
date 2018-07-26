@@ -9,3 +9,7 @@
 - Queue
 - Hash Table
 - Binary Tree
+
+### Search Algorithms
+
+- Linear Search
