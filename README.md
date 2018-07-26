@@ -2,9 +2,10 @@
 
 ### Data Structures
 
-- Basic Linked List
-- Singly Linked List
-- Doubly Linked List
+- Linked List
+  - Basic Linked List
+  - Singly Linked List
+  - Doubly Linked List
 - Stack
 - Queue
 - Hash Table
