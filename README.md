@@ -19,3 +19,4 @@
 ### Sort Algorithms
 
 - Insertion Sort
+- Merge Sort
