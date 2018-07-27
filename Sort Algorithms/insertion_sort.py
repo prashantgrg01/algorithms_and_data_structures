@@ -12,6 +12,9 @@ Insertion Sort Implementation
 # function to return a sorted list of items given an unsorted list of items
 def insertion_sort(items):
     assert type(items) == list, "Argument items must be a list!"
+    # if the list is empty return it
+    if len(items) == 0:
+        return items
     # loop through each item starting from the second item
     for i in range(1, len(items)):
         # make current item the key
