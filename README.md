@@ -15,3 +15,7 @@
 
 - Linear Search
 - Binary Search
+
+### Sort Algorithms
+
+- Insertion Sort
