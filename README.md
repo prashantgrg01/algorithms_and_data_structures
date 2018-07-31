@@ -10,6 +10,7 @@
 - Queue
 - Hash Table
 - Binary Tree
+- Heap
 
 ### Search Algorithms
 
