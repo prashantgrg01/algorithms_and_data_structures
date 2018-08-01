@@ -10,9 +10,9 @@ Heap Implementation - Binary Max Heap
 Methods:
 is_empty() => O(1) => returns whether the heap is empty or not
 get_max() => O(1) => returns the maximum item of the heap without removing it
-pop_max() => O(1) => returns the maximum item from the heap by removing it
+pop_max() => O(log n) => returns the maximum item from the heap by removing it
 insert(item) => O(log n) => inserts a new item to the heap
-remove(item) => O(log n) => removes an item from the heap
+update(item) => O(n log n) => updates an item in the heap
 
 """
 
@@ -21,8 +21,6 @@ class Node(object):
     def __init__(self, data):
         # stores the data item for current node
         self.data = data
-        # sets the priority for current node
-        self.priority = 0
 
     def __str__(self):
         return "< " + str(self.data) + " >"
@@ -105,20 +103,28 @@ class Heap(object):
         """
         Function to return the maximum item of the heap without removing it
         """
-        return self.heap[0].data
+        if self.is_empty():
+            print("Heap empty!")
+        else:
+            return self.heap[0].data
 
     def pop_max(self):
         """
         Function to return the maximum item from the heap by removing it
         """
-        # swap the first item with the last item of the heap
-        self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
-        # remove the last item i.e. the max node from the heap
-        max_node = self.heap.pop()
-        # adjust the first item in its correct position down the heap
-        self.heapify_down(0)
-        # return the max item
-        return max_node.data
+        if self.is_empty():
+            print("Heap empty!")
+        else:
+            # swap the first item with the last item of the heap
+            self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
+            # remove the last item i.e. the max node from the heap
+            max_node = self.heap.pop()
+            # if the heap is not empty after removing the max node
+            if not self.is_empty():
+                # adjust the first item in its correct position down the heap
+                self.heapify_down(0)
+            # return the max item
+            return max_node.data
     
     def insert(self, item):
         """
@@ -133,11 +139,35 @@ class Heap(object):
         # adjust the new node i.e. the last item in its correct position up the heap
         self.heapify_up(node_index)
     
-    def remove(self, item):
+    def update(self, item, new_item):
         """
-        Function to remove an item from the heap
+        Function to update an item in the heap
         """
-        pass
+        if self.is_empty():
+            print("Heap empty!")
+        else:
+            # loop through each item in the heap until we find the item to update
+            index = 0
+            found = False
+            while found == False and index < len(self.heap):
+                # if the current item is the item we want to update
+                if item == self.heap[index]:
+                    # set found to True to signify that the item to update was found
+                    found = True
+                    # update the item
+                    self.heap[index] = new_item
+                    # if the current item is greater than its parent
+                    if self.heap[index] > self.heap[self.get_parent(index)]:
+                        # adjust the current item in its correct position up the heap
+                        self.heapify_up(index)
+                    else:
+                        # adjust the current item in its correct position down the heap
+                        self.heapify_down(index)
+                # move on to the next index
+                index += 1
+            # if the item is still not found say so
+            if found == False:
+                print("Item not found!")
 
 # testing our heap
 def test_heap():
