@@ -12,18 +12,9 @@ is_empty() => O(1) => returns whether the heap is empty or not
 get_max() => O(1) => returns the maximum item of the heap without removing it
 pop_max() => O(log n) => returns the maximum item from the heap by removing it
 insert(item) => O(log n) => inserts a new item to the heap
-update(item) => O(n log n) => updates an item in the heap
+update(item, new_item) => O(n log n) => updates an item in the heap
 
 """
-
-# Node definition for Heap
-class Node(object):
-    def __init__(self, data):
-        # stores the data item for current node
-        self.data = data
-
-    def __str__(self):
-        return "< " + str(self.data) + " >"
 
 # Class definition for Heap
 class Heap(object):
@@ -106,7 +97,7 @@ class Heap(object):
         if self.is_empty():
             print("Heap empty!")
         else:
-            return self.heap[0].data
+            return self.heap[0]
 
     def pop_max(self):
         """
@@ -117,27 +108,25 @@ class Heap(object):
         else:
             # swap the first item with the last item of the heap
             self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
-            # remove the last item i.e. the max node from the heap
-            max_node = self.heap.pop()
-            # if the heap is not empty after removing the max node
+            # remove the last item i.e. the max item from the heap
+            max_item = self.heap.pop()
+            # if the heap is not empty after removing the max item
             if not self.is_empty():
                 # adjust the first item in its correct position down the heap
                 self.heapify_down(0)
             # return the max item
-            return max_node.data
+            return max_item
     
     def insert(self, item):
         """
         Function to insert a new item in the heap
         """
-        # create a new node with the item
-        node = Node(item)
-        # add the new node to the heap i.e. at the end of the heap array
-        self.heap.append(node)
-        # get the index of the new node i.e. the last item in the heap array
-        node_index = len(self.heap) - 1
-        # adjust the new node i.e. the last item in its correct position up the heap
-        self.heapify_up(node_index)
+        # add the new item to the heap i.e. at the end of the heap array
+        self.heap.append(item)
+        # get the index of the new item i.e. the last item in the heap array
+        item_index = len(self.heap) - 1
+        # adjust the new item i.e. the last item in its correct position up the heap
+        self.heapify_up(item_index)
     
     def update(self, item, new_item):
         """
@@ -168,10 +157,50 @@ class Heap(object):
             # if the item is still not found say so
             if found == False:
                 print("Item not found!")
+    
+    def __str__(self):
+        if self.is_empty():
+            return "Heap empty!"
+        else:
+            res = "["
+            for item in self.heap:
+                res += str(item) + ", "
+            return res[:-2] + "]"
 
 # testing our heap
 def test_heap():
-    pass
+    # create new heap
+    heap = Heap()
+
+    # test empty heap
+    print("Is heap empty?", heap.is_empty())
+    print("Maximum item of heap:", heap.pop_max())
+    print(heap)
+
+    # insert items to heap
+    heap.insert(50)
+    heap.insert(30)
+    heap.insert(70)
+    heap.insert(45)
+    heap.insert(15)
+    print("Is heap empty?", heap.is_empty())
+    print(heap)
+
+    # get max item from the heap
+    print("Maximum item of heap:", heap.get_max())
+    print(heap)
+
+    # remove max item from the heap
+    print("Maximum item of heap:", heap.pop_max())
+    print(heap)
+
+    # update an item that is present in the heap
+    heap.update(15, 60)
+    print(heap)
+
+    # update an item that is not present in the heap
+    heap.update(20, 40)
+    print(heap)
 
 if __name__ == "__main__":
     test_heap()
